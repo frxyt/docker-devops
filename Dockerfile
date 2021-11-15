@@ -63,8 +63,8 @@ USER debian
 WORKDIR /work
 
 ENV LOAD_SSH_PRIVATE_KEY_1=/home/debian/.ssh/id_rsa \
-    LOAD_SSH_PRIVATE_KEY_2= \
-    LOAD_SSH_PRIVATE_KEY_3= \
+    LOAD_SSH_PRIVATE_KEY_2=/home/debian/.ssh/id_dsa \
+    LOAD_SSH_PRIVATE_KEY_3=/home/debian/.ssh/id_ecdsa \
     LOAD_SSH_PRIVATE_KEY_4= \
     LOAD_SSH_PRIVATE_KEY_5= \
     LOAD_SSH_PRIVATE_KEY_6= \
