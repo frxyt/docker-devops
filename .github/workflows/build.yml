@@ -6,8 +6,8 @@ on:
       - master
     paths:
       - .github/workflows/build.yml
-      - ./Dockerfile
-      - ./entrypoint
+      - Dockerfile
+      - entrypoint
 
 jobs:
   build-docker:
