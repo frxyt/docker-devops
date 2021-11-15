@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Copyright (c) 2021 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
+# Copyright (c) 2021 Jérémy WALTHER <jeremy.walther@golflima.net>
+# See <https://github.com/frxyt/docker-devops> for details.
+
+set -e;
+
+load_ssh_private_key() {
+    if [[ -f "$1" ]]; then
+        /usr/bin/keychain --nogui --quiet $1
+    fi
+}
+
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_1}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_2}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_3}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_4}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_5}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_6}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_7}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_8}"
+load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_9}"
+
+source ~/.keychain/$HOSTNAME-sh
+
+/bin/bash "$@"
