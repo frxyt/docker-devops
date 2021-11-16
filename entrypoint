@@ -19,7 +19,7 @@ print_no_interactive_shell() {
 
 load_ssh_private_key() {
     if [[ -f "$1" ]]; then
-        $((loaded_ssh_private_keys_count++))
+        ((loaded_ssh_private_keys_count++))
         /usr/bin/keychain --nogui --quiet $1
     fi
 }
