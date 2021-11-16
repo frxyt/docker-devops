@@ -6,8 +6,9 @@
 
 set -e;
 
-declare -i loaded_ssh_private_keys_count;
-loaded_ssh_private_keys_count=0;
+if [[ "${FRX_DEBUG}" == "1" ]]; then
+    set -x;
+fi
 
 print_no_interactive_shell() {
     echo -e "\033[1;31m[!] No interactive shell detected.\033[0m"
@@ -19,7 +20,7 @@ print_no_interactive_shell() {
 
 load_ssh_private_key() {
     if [[ -f "$1" ]]; then
-        ((loaded_ssh_private_keys_count++))
+        loaded_ssh_private_keys_count=$((loaded_ssh_private_keys_count + 1))
         /usr/bin/keychain --nogui --quiet $1
     fi
 }
@@ -27,6 +28,9 @@ load_ssh_private_key() {
 if [[ ! (-t 0 && -t 1) ]]; then
     print_no_interactive_shell
 fi
+
+declare -i loaded_ssh_private_keys_count;
+loaded_ssh_private_keys_count=0;
 
 load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_1}"
 load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_2}"
