@@ -6,11 +6,27 @@
 
 set -e;
 
+declare -i loaded_ssh_private_keys_count;
+loaded_ssh_private_keys_count=0;
+
+print_no_interactive_shell() {
+    echo -e "\033[1;31m[!] No interactive shell detected.\033[0m"
+    echo -e "\033[1;34m[i] Please run this docker image with one of the following methods:\033[0m"
+    echo -e "\033[0;37mdocker run \033[44m-it\033[0m\033[0;37m frxyt/devops\033[0m"
+    echo -e "\033[0;37mdocker-compose \033[44mrun\033[0m\033[0;37m devops\033[0m"
+    exit 1;
+}
+
 load_ssh_private_key() {
     if [[ -f "$1" ]]; then
+        $((loaded_ssh_private_keys_count++))
         /usr/bin/keychain --nogui --quiet $1
     fi
 }
+
+if [[ ! (-t 0 && -t 1) ]]; then
+    print_no_interactive_shell
+fi
 
 load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_1}"
 load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_2}"
@@ -22,6 +38,8 @@ load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_7}"
 load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_8}"
 load_ssh_private_key "${LOAD_SSH_PRIVATE_KEY_9}"
 
-source ~/.keychain/$HOSTNAME-sh
+if [[ "${loaded_ssh_private_keys_count}" > 0 ]]; then
+    source ~/.keychain/$HOSTNAME-sh || print_no_interactive_shell
+fi
 
 /bin/bash "$@"
