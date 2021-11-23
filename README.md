@@ -16,7 +16,7 @@
 
 ### Single-line
 
-`docker run --rm -it -v ~/.ssh/id_rsa:/home/debian/.ssh/id_rsa:ro -v ~/.ssh/id_rsa.pub:/home/debian/.ssh/id_rsa.pub:ro -v $(pwd):/work frxyt/devops`
+`docker run --rm -it -v ~/.ssh/id_rsa:/home/devops/.ssh/id_rsa:ro -v ~/.ssh/id_rsa.pub:/home/devops/.ssh/id_rsa.pub:ro -v $(pwd):/work frxyt/devops`
 
 ### `docker-compose.yml`
 
@@ -26,12 +26,12 @@ services:
   devops:
     image: frxyt/devops
     environment:
-      - LOAD_SSH_PRIVATE_KEY_1=/home/debian/.ssh/id_rsa
+      - LOAD_SSH_PRIVATE_KEY_1=/home/devops/.ssh/id_rsa
       - TZ=Europe/Paris
     volumes:
-      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}:/home/debian/.ssh/id_rsa:ro
-      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}${LINK_SSH_PUBLIC_KEY_EXT-.pub}:/home/debian/.ssh/id_rsa.pub:ro
-      - ${LINK_SSH_KNOWN_HOSTS-~/.ssh/known_hosts}:/home/debian/.ssh/known_hosts:rw
+      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}:/home/devops/.ssh/id_rsa:ro
+      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}${LINK_SSH_PUBLIC_KEY_EXT-.pub}:/home/devops/.ssh/id_rsa.pub:ro
+      - ${LINK_SSH_KNOWN_HOSTS-~/.ssh/known_hosts}:/home/devops/.ssh/known_hosts:rw
       - ${LINK_WORKING_DIR-./}:/work:rw
 ```
 

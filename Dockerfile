@@ -59,14 +59,14 @@ RUN set -ex; \
     rm -r /var/lib/apt/lists/*;
 
 RUN set -ex; \
-    groupadd -g 1000 debian; \
-    useradd -g 1000 -ms /bin/bash -u 1000 debian;
-USER debian
+    groupadd -g 1000 devops; \
+    useradd -g 1000 -ms /bin/bash -u 1000 devops;
+USER devops
 WORKDIR /work
 
-ENV LOAD_SSH_PRIVATE_KEY_1=/home/debian/.ssh/id_rsa \
-    LOAD_SSH_PRIVATE_KEY_2=/home/debian/.ssh/id_dsa \
-    LOAD_SSH_PRIVATE_KEY_3=/home/debian/.ssh/id_ecdsa \
+ENV LOAD_SSH_PRIVATE_KEY_1=/home/devops/.ssh/id_rsa \
+    LOAD_SSH_PRIVATE_KEY_2=/home/devops/.ssh/id_dsa \
+    LOAD_SSH_PRIVATE_KEY_3=/home/devops/.ssh/id_ecdsa \
     LOAD_SSH_PRIVATE_KEY_4= \
     LOAD_SSH_PRIVATE_KEY_5= \
     LOAD_SSH_PRIVATE_KEY_6= \
