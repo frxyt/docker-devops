@@ -8,6 +8,7 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --fix-missing --no-install-recommends \
         apache2-utils \
+        apg \
         apt-transport-https \
         build-essential \
         curl \
@@ -23,6 +24,7 @@ RUN set -ex; \
         nano \
         openssh-client \
         procps \
+        pwgen \
         python3 \
         python3-pip \
         rename \
