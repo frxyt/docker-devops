@@ -30,6 +30,7 @@ RUN set -ex; \
         rename \
         rsync \
         software-properties-common \
+        sudo \
         vim \
         wget \
         whois; \
@@ -60,7 +61,11 @@ RUN set -ex; \
 
 RUN set -ex; \
     groupadd -g 1000 devops; \
-    useradd -g 1000 -ms /bin/bash -u 1000 devops;
+    useradd -g 1000 -ms /bin/bash -u 1000 devops; \
+    adduser devops sudo; \
+    echo 'devops ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/devops; \
+    mkdir -p /home/devops/.ssh; \
+    chown devops:devops -R /home/devops;
 USER devops
 WORKDIR /work
 
