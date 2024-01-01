@@ -29,8 +29,8 @@ services:
       - LOAD_SSH_PRIVATE_KEY_1=/home/devops/.ssh/id_rsa
       - TZ=Europe/Paris
     volumes:
-      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}:/home/devops/.ssh/id_rsa:ro
-      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}${LINK_SSH_PUBLIC_KEY_EXT-.pub}:/home/devops/.ssh/id_rsa.pub:ro
+      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/id_rsa}:/home/devops/.ssh/id_rsa:ro
+      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/id_rsa}${LINK_SSH_PUBLIC_KEY_EXT-.pub}:/home/devops/.ssh/id_rsa.pub:ro
       - ${LINK_SSH_KNOWN_HOSTS-~/.ssh/known_hosts}:/home/devops/.ssh/known_hosts:rw
       - ${LINK_WORKING_DIR-./}:/work:rw
 ```
@@ -44,8 +44,8 @@ This project and images are published under the [MIT License](LICENSE).
 ```
 MIT License
 
-Copyright (c) 2019 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
-Copyright (c) 2019 Jérémy WALTHER <jeremy.walther@golflima.net>
+Copyright (c) 2019,2021,2023 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
+Copyright (c) 2019,2021,2023 Jérémy WALTHER <jeremy.walther@golflima.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

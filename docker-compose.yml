@@ -6,7 +6,7 @@ services:
       - LOAD_SSH_PRIVATE_KEY_1=/home/devops/.ssh/id_rsa
       - TZ=Europe/Paris
     volumes:
-      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}:/home/devops/.ssh/id_rsa:ro
-      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/-id_rsa}${LINK_SSH_PUBLIC_KEY_EXT-.pub}:/home/devops/.ssh/id_rsa.pub:ro
+      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/id_rsa}:/home/devops/.ssh/id_rsa:ro
+      - ${LINK_SSH_PRIVATE_KEY-~/.ssh/id_rsa}${LINK_SSH_PUBLIC_KEY_EXT-.pub}:/home/devops/.ssh/id_rsa.pub:ro
       - ${LINK_SSH_KNOWN_HOSTS-~/.ssh/known_hosts}:/home/devops/.ssh/known_hosts:rw
       - ${LINK_WORKING_DIR-./}:/work:rw
